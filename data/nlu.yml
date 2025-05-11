@@ -1,0 +1,162 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - salut
+    - bonjour
+    - hello
+    - bonsoir
+    - hey
+    - coucou
+    - salutations
+
+- intent: goodbye
+  examples: |
+    - au revoir
+    - à bientôt
+    - à plus tard
+    - bonne journée
+    - bonne soirée
+    - adieu
+
+- intent: affirm
+  examples: |
+    - oui
+    - bien sûr
+    - évidemment
+    - c'est ça
+    - correct
+    - exactement
+    - parfait
+    - d'accord
+    - ok
+    - tout à fait
+
+- intent: deny
+  examples: |
+    - non
+    - jamais
+    - je ne pense pas
+    - je n'aime pas ça
+    - pas du tout
+    - pas vraiment
+    - pas exactement
+    - c'est incorrect
+
+- intent: book_table
+  examples: |
+    - je voudrais réserver une table
+    - réservation de table
+    - je souhaite faire une réservation
+    - pouvez-vous me réserver une table
+    - je veux réserver pour [4](number_of_people) personnes
+    - réservation pour [2](number_of_people) personnes [demain](date) à [20h](time)
+    - je voudrais réserver une table pour [6](number_of_people) personnes [ce soir](date)
+    - je veux réserver pour [le 25 juin](date)
+    - je veux réserver au nom de [Martin](name)
+    - réservation pour [Dupont](name) [demain midi](date)
+    - mon numéro est le [0612345678](phone_number)
+    - appelez-moi au [06 12 34 56 78](phone_number)
+
+- intent: check_reservation
+  examples: |
+    - je veux vérifier ma réservation
+    - pouvez-vous me donner des informations sur ma réservation
+    - qu'en est-il de ma réservation
+    - ma réservation est-elle toujours valide
+    - j'ai une réservation sous le nom de [Martin](name)
+    - mon numéro de réservation est [RES123](reservation_id)
+    - montrez-moi les détails de la réservation [RES456](reservation_id)
+    - réservation au nom de [Dupont](name)
+
+- intent: cancel_reservation
+  examples: |
+    - je veux annuler ma réservation
+    - annuler ma table
+    - annulation de réservation
+    - je ne pourrai pas venir
+    - annulez la réservation [RES123](reservation_id)
+    - pouvez-vous annuler la réservation au nom de [Martin](name)
+    - je dois annuler ma réservation pour [demain](date)
+
+- intent: add_comment
+  examples: |
+    - je voudrais ajouter un commentaire à ma réservation
+    - pouvez-vous ajouter une note à ma réservation
+    - j'ai une demande spéciale pour ma réservation
+    - ajouter un commentaire
+    - j'aimerais une [table près de la fenêtre](comment)
+    - j'ai besoin d'[une chaise haute pour enfant](comment)
+    - [allergique aux fruits de mer](comment)
+    - [table calme](comment) si possible
+
+- intent: modify_comment
+  examples: |
+    - je voudrais modifier le commentaire de ma réservation
+    - changer mon commentaire
+    - pouvez-vous mettre à jour le commentaire
+    - modifier la note sur la réservation
+    - changer la note [table calme](comment) par [table près de la fenêtre](comment)
+    - remplacer mon commentaire par [besoin d'accès handicapé](comment)
+
+- intent: get_daily_menu
+  examples: |
+    - quel est le menu du jour
+    - menu aujourd'hui
+    - qu'est-ce que vous proposez aujourd'hui
+    - plats du jour
+    - spécialités du jour
+    - qu'est-ce que le chef recommande aujourd'hui
+
+- intent: get_allergens
+  examples: |
+    - quels sont les allergènes dans vos plats
+    - informations sur les allergènes
+    - je suis allergique, que dois-je savoir
+    - liste des allergènes
+    - contient-il des fruits à coque
+    - informations pour allergies alimentaires
+
+- intent: get_full_menu_link
+  examples: |
+    - où puis-je voir le menu complet
+    - avez-vous un lien vers le menu
+    - menu complet
+    - carte des vins
+    - voir tous les plats
+    - lien vers le menu en ligne
+
+- intent: inform
+  examples: |
+    - [demain](date)
+    - [ce soir](date)
+    - [vendredi prochain](date)
+    - [le 15 juin](date)
+    - [19h30](time)
+    - [20h](time)
+    - [midi](time)
+    - [2](number_of_people) personnes
+    - nous serons [4](number_of_people)
+    - [6](number_of_people) convives
+    - mon nom est [Dupont](name)
+    - [Martin](name)
+    - [Jean Dupuis](name)
+    - mon numéro est le [0612345678](phone_number)
+    - [06 87 65 43 21](phone_number)
+    - [+33612345678](phone_number)
+    - numéro de réservation [RES123](reservation_id)
+    - [RES456](reservation_id)
+    - [table près de la fenêtre](comment)
+    - [allergie aux arachides](comment)
+    - [besoin d'une chaise haute](comment)
+    - [anniversaire surprise](comment)
+
+- intent: out_of_scope
+  examples: |
+    - quel temps fait-il aujourd'hui
+    - raconte-moi une blague
+    - quelle est la capitale de la France
+    - qui est le président
+    - comment réparer ma voiture
+    - je veux commander une pizza

@@ -1,0 +1,14 @@
+
+action_endpoint:
+  url: http://localhost:5055/webhook
+
+# Configurez ici d'autres endpoints si nécessaire
+# Par exemple, pour un tracker store, une base de données, etc.
+# tracker_store:
+#   type: SQL
+#   dialect: "sqlite"
+#   url: "sqlite:///restaurant.db"
+#   db: "restaurant"
+#   username: 
+#   password: 
+#   query: {"session_expiration": 60}

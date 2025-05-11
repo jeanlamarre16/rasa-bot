@@ -1,0 +1,156 @@
+version: "3.1"
+
+slots:
+  availability:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: custom
+  date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: date
+  time:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: time
+  number_of_people:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: number_of_people
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: name
+  phone_number:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: phone_number
+  reservation_id:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: reservation_id
+  comment:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: comment
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - inform
+  - book_table
+  - check_reservation
+  - cancel_reservation
+  - add_comment
+  - modify_comment
+  - get_daily_menu
+  - get_allergens
+  - get_full_menu_link
+  - out_of_scope
+
+entities:
+  - date
+  - time
+  - number_of_people
+  - name
+  - phone_number
+  - reservation_id
+  - comment
+
+responses:
+  utter_greet:
+    - text: "Bonjour ! Je suis l'assistant de réservation du restaurant. Comment puis-je vous aider aujourd'hui?"
+  
+  utter_goodbye:
+    - text: "Au revoir et à bientôt dans notre restaurant!"
+  
+  utter_ask_date:
+    - text: "Pour quelle date souhaitez-vous réserver?"
+  
+  utter_ask_time:
+    - text: "À quelle heure souhaitez-vous réserver?"
+  
+  utter_ask_number_of_people:
+    - text: "Pour combien de personnes souhaitez-vous réserver?"
+  
+  utter_ask_name:
+    - text: "Sous quel nom souhaitez-vous faire la réservation?"
+  
+  utter_ask_phone_number:
+    - text: "Quel est votre numéro de téléphone?"
+  
+  utter_ask_reservation_id:
+    - text: "Pouvez-vous me donner votre numéro de réservation?"
+  
+  utter_ask_comment:
+    - text: "Avez-vous un commentaire à ajouter à votre réservation? (ex: table près de la fenêtre, accessibilité, etc.)"
+  
+  utter_confirmation:
+    - text: "Voici un récapitulatif de votre réservation: Table pour {number_of_people} personnes le {date} à {time}, au nom de {name}, téléphone: {phone_number}. Est-ce correct?"
+  
+  utter_ask_continue:
+    - text: "Souhaitez-vous poursuivre?"
+  
+  utter_default:
+    - text: "Je suis désolé, je n'ai pas compris. Pourriez-vous reformuler?"
+  
+  utter_daily_menu:
+    - text: "Voici notre menu du jour: Entrée - Salade de chèvre chaud, Plat - Magret de canard aux figues, Dessert - Tarte Tatin."
+  
+  utter_allergens:
+    - text: "Nos plats peuvent contenir les allergènes suivants: gluten, fruits à coque, œufs, produits laitiers, céleri, moutarde, sésame, sulfites. N'hésitez pas à nous signaler vos allergies lors de votre réservation."
+  
+  utter_full_menu_link:
+    - text: "Vous pouvez consulter notre menu complet sur notre site web: https://www.notrerestaurant.fr/menu"
+  
+  utter_out_of_scope:
+    - text: "Je suis désolé, je ne peux pas vous aider avec cette demande. Je suis spécialisé dans la gestion des réservations du restaurant."
+
+actions:
+  - action_book_table
+  - action_check_availability
+  - action_generate_reservation_id
+  - action_get_reservation_info
+  - action_add_comment
+  - action_modify_comment
+  - action_cancel_reservation
+  - validate_booking_form
+  - action_submit_reservation
+
+
+forms:
+  booking_form:
+    required_slots:
+      - date
+      - time
+      - number_of_people
+      - name
+      - phone_number
+    #submit:
+    #  - action: action_submit_reservation
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,65 @@
+version: "3.1"
+
+rules:
+  - rule: Saluer l'utilisateur
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Dire au revoir
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Activer formulaire de réservation
+    steps:
+      - intent: book_table
+      - action: booking_form
+      - active_loop: booking_form
+
+  - rule: Demander menu du jour
+    steps:
+      - intent: get_daily_menu
+      - action: utter_daily_menu
+
+  - rule: Demander allergènes
+    steps:
+      - intent: get_allergens
+      - action: utter_allergens
+
+  - rule: Demander lien menu complet
+    steps:
+      - intent: get_full_menu_link
+      - action: utter_full_menu_link
+
+  - rule: Out of scope
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+  - rule: Soumettre le formulaire de réservation
+    condition:
+      - active_loop: booking_form
+      - slot_was_set:
+          - availability: true
+    steps:
+      - action: booking_form
+      - active_loop: null
+      - action: action_submit_reservation
+      - action: utter_confirmation
+
+  - rule: Soumettre le formulaire de réservation
+    condition:
+      - active_loop: booking_form
+      - slot_was_set:
+          - availability: false
+    steps:
+      - action: booking_form
+      - active_loop: null
+      - action: utter_ask_continue
+
+  - rule: Démarrer le formulaire de réservation 
+    steps:
+      - intent: book_table
+      - action: booking_form
+      - active_loop: booking_form
